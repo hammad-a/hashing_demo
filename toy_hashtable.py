@@ -17,11 +17,13 @@ def lookup(key):
     return table[index]
 
 # adding <banana, 23> to the table
+print("Inserting <banana, 23> into the table")
 insert("banana", 23)
-print(lookup("banana"))
 print(table)
+print(lookup("banana"))
 
 # adding <lemon, 7> to the table
+print("Inserting <lemon, 7> into the table")
 insert("lemon", 7)
-print(lookup("lemon"))
 print(table)
+print(lookup("lemon"))

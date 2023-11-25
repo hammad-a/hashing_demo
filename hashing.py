@@ -1,8 +1,8 @@
 import time
 
 def update_hash(container, word):
-    # attempt to find word in hash table and increment count, O(1)
-    if word in container:
+    # attempt to find word in hash table and increment count
+    if word in container: # takes O(1) time
         container[word] += 1
     else:
         # not already in container, initialize count to 1
