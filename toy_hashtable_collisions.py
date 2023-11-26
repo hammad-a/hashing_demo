@@ -37,14 +37,15 @@ class Chain:
         while(current_node and current_node.entry[0] != key): # traverse the chain to find the key
             prev_node = current_node
             current_node = current_node.next
-        if current_node == None: # key not found
+        if current_node is None: # key not found
             return
         else:
             prev_node.next = current_node.next # remove node
     
     # str representation of the chain (to be used by the print method)
     def __str__(self):
-        ret = ""
+        ret = "| "
+        if self.head is None: return "| null"
         current_node = self.head
         while(current_node):
             if current_node.next: # add -> between nodes if a next node exists in the chain
@@ -56,10 +57,10 @@ class Chain:
 
 
 def print_table(table):
-    print("=" * 15)
-    for chain in table:
-        print(chain)
-    print("=" * 15)
+    print("=" * 40)
+    for idx, chain in enumerate(table):
+        print("[%d] %s" % (idx, chain))
+    print("=" * 40)
 
 # initialize table from slide 21
 print("Initializing table...")
@@ -79,7 +80,7 @@ def compress(hashint, size):
 def insert(key, value):
     index = compress(translate(key), len(table)) # get bucket index, O(1)
     chain = table[index] # retrieve chain, O(1)
-    if chain.lookup(key) == None: # if not already in table, O(???)
+    if chain.lookup(key) is None: # if not already in table, O(???)
         chain.insert((key, value)) # add to chain, O(1)
 
 def lookup(key):
@@ -92,13 +93,14 @@ def remove(key):
     chain = table[index] # retrieve chain, O(1)
     chain.remove(key)
 
-
 print("Inserting <orange, 3> into the table")
 insert("orange", 3)
-# print(lookup("orange"))
-# print(lookup("grape"))
 print_table(table)
 
-print("Inserting <orange> from the table")
+print("Inserting <guava, 47> into the table")
+insert("guava", 47)
+print_table(table)
+
+print("Removing <orange> from the table")
 remove("orange")
 print_table(table)
