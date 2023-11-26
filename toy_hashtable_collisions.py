@@ -58,8 +58,8 @@ class Chain:
 
 def print_table(table):
     print("=" * 40)
-    for idx, chain in enumerate(table):
-        print("[%d] %s" % (idx, chain))
+    for i in range(len(table)):
+        print("[%d] %s" % (i, table[i]))
     print("=" * 40)
 
 # initialize table from slide 21
